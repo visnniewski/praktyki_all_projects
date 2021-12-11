@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Register
+{% endblock title %}
+
+{% block nav %}
+    <h2>Register</h2>
+{% endblock nav %}
+
+{% block content %}
+    <form action="" method="POST">
+        {% csrf_token %}
+        <div>
+            <div>
+                <h3>{{form.username.label}}</h3>
+                <p>{{form.username}}</p>
+            </div>
+            <div>
+                <h3>{{form.email.label}}</h3>
+                <p>{{form.email}}</p>
+            </div>
+            <div>
+                <h3>{{form.password1.label}}</h3>
+                <p>{{form.password1}}</p>
+            </div>
+            <div>
+                <h3>{{form.password2.label}}</h3>
+                <p>{{form.password2}}</p>
+            </div>
+            <div>
+                <button type='submit'>Create Account</button>
+            </div>
+            <div>
+                {{form.errors}}
+            </div>
+            <div>
+                <p>Already have an account? <a href="{% url 'book_rent:login_user' %}">Sign In</a></p>
+            </div>
+        </div>
+    </form>
+{% endblock content %}
+    
+    

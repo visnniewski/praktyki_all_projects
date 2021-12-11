@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Library
+{% endblock title %}
+
+{% block nav %}
+    <a href="{% url 'book_rent:login_user' %}">Log in</a>
+    <a href="{% url 'book_rent:register' %}">Register</a>
+{% endblock nav %}
+    

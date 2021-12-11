@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+    Login
+{% endblock title %}
+
+{% block content %}
+<style>
+    input{
+        border-radius: 20px;
+        padding: 10px;
+        border: 1px solid #2f3640;
+        width: 200px;
+        box-shadow: inset 0 0 1em #4cd137;
+    }
+    input:hover{
+        box-shadow: inset 0 0 1em #44bd32;
+    }
+    button{
+        border-radius: 20px;
+        border: 1px solid #2f3640;
+        width: 100px;
+        height: 50px;
+        box-shadow: inset 0 0 2em #4cd137;
+        font-weight: bold;
+    }
+    button:hover{
+        cursor: pointer;
+        box-shadow: inset 0 0 2em #44bd32;
+    }
+    .form-div{
+        background-color: #fbc531;
+        width: 400px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        box-shadow: 10px 5px 5px #dcdde1;
+    }
+</style>
+<div class="content">
+    <form action="" method="post">
+        {% csrf_token %}
+        <div class="form-div">
+            <div>
+                <h2><label for="username">Username</label></h2>
+                <p><input type="text" name="username" id="username"></p>
+            </div>
+            <div>
+                <h2><label for="username">Password</label></h2>
+                <p><input type="password" name="password" id="password"></p>
+            </div>
+            <div>
+                <p><button type="submit">Login</button></p>
+            </div>
+            <div>
+                
+                {% for message in messages %}
+                    <p id=messages>{{message}}</p>
+                {% endfor %}
+                    
+            </div>
+            <div>
+                <p>Don't have an account yet? <a href="{% url 'User:register_user' %}">Sign Up</a></p>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock content %}
+    

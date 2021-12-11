@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit - {{ album.title }}{% endblock title %}
+
+{% block nav-title %}
+    <a style="text-decoration: none;" href="{% url 'MusicStore:index' %}"><h1 class="title">MusicStore <i class="fas fa-record-vinyl"></i></h1></a>
+{% endblock nav-title %}
+
+{% block content %}
+<style>
+    form{
+        width: 500px;
+        text-align: center;
+        font-size: 20px;
+        margin: 0 auto;
+    }
+    input{
+        margin-left: 10px;
+    }
+    input, label{
+        margin-top: 10px;
+    }
+    button[type="submit"]{
+        margin: 0 auto;
+        margin-top: 10px;
+    }
+</style>
+    <form action="{% url 'MusicStore:editsave' album.id %}" method="post">
+        {% csrf_token %}
+        <label for="album-title-form">Title</label><input type="text" name="album-title-form" id="album-title-form" value="{{ album.title }}"><br>
+        <label for="album-description-form">Description</label><input type="text" name="album-description-form" id="album-description-form" value="{{ album.description }}"><br>
+        {% for song in songs %}
+            <label for="song-title-form-{{ song.id }}">Song <i class="fas fa-music"></i></label><input type="text" name="song-title-form-{{ song.id }}" id="song-title-form" value="{{ song.title }}"><input type="text" name="song-link-form-{{ song.id }}" id="song-title-form" value="{{ song.link }}"><br>
+        {% endfor %}
+        <button type="submit" class="">SAVE CHANGES <i class="fas fa-save"></i></button>
+    </form>
+{% endblock content %}
+    

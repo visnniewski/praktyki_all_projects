@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    MusicStore - {{ album.title }}
+{% endblock title %}
+
+
+{% block nav-title %}
+    <a style="text-decoration: none;" href="{% url 'MusicStore:index' %}"><h1 class="title">MusicStore <i class="fas fa-record-vinyl"></i></h1></a>
+{% endblock nav-title %}
+
+{% block content %}
+<style>
+    .album-title-div{
+        text-align: center;
+        font-size: 30px;
+        margin-top: 20px;
+    }
+    .album-description{
+        text-align: center;
+    }
+    .song-list{
+        text-align: center;
+    }
+    .song-link{
+        margin-left: -40px;
+        text-decoration: none;
+        color: black;
+        transition: 0.5s;
+    }
+    .song-link:visited{
+        color: black;
+    }
+    .song-link:hover{
+        color: #0097e6;
+    }
+    .edit-btn{
+        margin: 0 auto;
+        text-align: center;
+        width: 200px;
+        margin-top: 20px;
+        height: 30px;
+        border: 2px solid #2c3e50;
+        border-radius: 10px;
+        padding-top: 8px;
+        background-color: #3498db;
+        transition: 0.5s;
+    }
+    .link-btn{
+        text-decoration: none;
+        color: white;
+    }
+    .edit-btn:hover{
+        background-color: #2980b9;
+    }
+</style>
+    <div class="album-title-div"><h2>{{ album.title }}</h2></div>
+    <div class="album-description"><h2>{{ album.description }}</h2></div>
+    <ul class="song-list">
+        {% for song in songs %}
+            <li><a class="song-link" href="{{ song.link }}" target="_blank">{{ song.title }}</a></li>
+        {% endfor %}
+    </ul>
+    <a class="link-btn" href="{% url 'MusicStore:edit' album.id %}"><div class="edit-btn">EDIT ALBUM</div></a>
+{% endblock content %}
+    
+    

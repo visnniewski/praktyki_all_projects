@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    MusicStore
+{% endblock title %}
+    
+{% block nav-title %}
+    <h1 class="title">MusicStore <i class="fas fa-record-vinyl"></i></h1>
+{% endblock nav-title %}
+    
+
+{% block content %}
+<style>
+    li{
+        border: 2px solid black;
+        border-radius: 5px;
+        width: 300px;
+        transition: 0.5s;
+    }
+    .liv{
+        text-align: center;
+    }
+    a{
+        text-decoration: none;
+        color: black;
+    }
+    a:visited{
+        color: black;
+    }
+    li:hover{
+        background-color: #dcdde1;
+    }
+    form{
+        margin-top: 20px;
+        margin-left: 40px;
+    }
+    input{
+        height: 20px;
+    }
+    input[type="submit"]{
+        height: 25px;
+    }
+    .adiv{
+        width: 300px;
+        margin-top: 10px;
+    }
+</style>
+<form action="{% url 'MusicStore:search' %}" method="get">
+    <!-- {% csrf_token %} -->
+    <input type="text" name="search" id="search">&nbsp;&nbsp;<input type="submit" value="SEARCH">
+</form>
+<ul>
+    {% for album in albums %}
+        <div class="adiv">
+            <a href="{% url 'MusicStore:detail' album.id %}">
+                <li>
+                    <div class='liv'>{{ album.title }}</div>
+                    <div class="album-title liv">{{ album.description }}</div>
+                </li>
+            </a>
+        </div>
+    {% endfor %}
+</ul>
+{% endblock content %}
+    
+        
